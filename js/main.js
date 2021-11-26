@@ -4,6 +4,7 @@ const URL = "http://www.omdbapi.com/?";
 const button = document.getElementById('sendButton');
 const inputElement = document.getElementById('inputPeli');
 const main = document.getElementById('main');
+const porMirar = [];
 
 
 
@@ -11,6 +12,16 @@ button.addEventListener('click', ()=> {
     console.log(inputElement.value);
     buscarPeli(inputElement.value);
 });
+
+if (localStorage.getItem("porMirar")) {
+    let listaLocal = JSON.parse(localStorage.getItem("porMirar"));
+    listaLocal.forEach(function(e) {
+        let pelicula = new Pelicula(e.titulo, e.anio, e.director, e.resena, e.actores, e.poster);
+        porMirar.push(pelicula);
+    })
+}
+
+
 
 /*function buscarPeli(pelicula){
     
@@ -52,7 +63,7 @@ function buscarPeli(pelicula){
                     <div class="row">
                         <h2 id="name">${data.Title}</h2>
                             <div class="col-6">
-                            <img src="${data.Poster}" alt="imagen de ${data.Title}">
+                            <img class="img-fluid" src="${data.Poster}" alt="imagen de ${data.Title}">
                                 <p>Estreno ${data.Year}</p>
                                 <p>Director: ${data.Director}</p>
                             </div>
@@ -60,6 +71,7 @@ function buscarPeli(pelicula){
                                 <p>Reparto: ${data.Actors}</p>
                                 <p>Resena: ${data.Plot}</p>
                             </div>
+                            <button class="btn btn-warning"  id="agregar" type="button">Agregar a la lista</button>
                     </div>
                 </div>    
                 `;
@@ -72,3 +84,9 @@ function buscarPeli(pelicula){
        
 }
 
+
+function agregarFav() {
+    porMirar.push(pelicula);
+    console.log(porMirar);
+    localStorage.setItem('porMirar', JSON.stringify(porMirar));
+}
