@@ -10,6 +10,7 @@
         
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <link href="manifest.webmanifest" rel="manifest" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -44,7 +45,8 @@
                     <div class="col-lg-6">                                          
                         <form class="d-flex row">
                             <input class="form-control col-12" value="" type="text" id="inputPeli" placeholder="Buscar Película">
-                            <button class="btn btn-warning col-12"  id="sendButton">Buscar</button>
+                            <button class="btn btn-warning col-12"  id="sendButton" type="button">Buscar</button>
+                            
                         </form>    
                     </div>
                 </div>
@@ -54,9 +56,6 @@
         <!-- Resultados de busqueda-->
         <div id="main"></div>
 
-        <main id="resultado">
-            
-        </main>
         
         
         <section class="bg-gradient-primary-to-secondary" id="download">
@@ -72,7 +71,7 @@
         <footer class="bg-black text-center py-5">
             <div class="container px-5">
                 <div class="text-white-50 small">
-                    <div class="mb-2">&copy;TP2 Oven Esteban. Diseño y Programación Web 2021. PWA. </div>
+                    <div class="mb-2">&copy;TP2 PWA Oven Esteban. Diseño y Programación Web 2021.  </div>
                 </div>
             </div>
         </footer>

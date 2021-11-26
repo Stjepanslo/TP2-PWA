@@ -1,11 +1,13 @@
 const API_KEY = "c2d638ef";
+const URL = "http://www.omdbapi.com/?";
 
 const button = document.getElementById('sendButton');
-const main = document.getElementById('main');
 const inputElement = document.getElementById('inputPeli');
+const main = document.getElementById('main');
 
 
-button.addEventListener("click", ()=> {
+
+button.addEventListener('click', ()=> {
     console.log(inputElement.value);
     buscarPeli(inputElement.value);
 });
@@ -31,15 +33,42 @@ button.addEventListener("click", ()=> {
     })
 };*/
 
+function Pelicula(titulo, anio, director, actores, resena, poster) {
+    this.titulo = titulo;
+    this.anio = anio;
+    this.director = director;
+    this.actores = actores;
+    this.resena = resena;
+    this.poster = poster;
+}
+
 function buscarPeli(pelicula){
-    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&t=${pelicula}`)
+    fetch(`${URL}apikey=${API_KEY}&t=${pelicula}`)
     .then(response => response.json() ) 
     .then(data => {
-        console.log(data);
-    })
-    .catch(function(error) {
-        console.log('Algo falló!', error);
-        
-    })
+        dataPeli = new Pelicula(data.Title, data.Year, data.Director, data.Actors, data.Plot, data.Poster);
+            main.innerHTML =`
+                <div class="container">
+                    <div class="row">
+                        <h2 id="name">${data.Title}</h2>
+                            <div class="col-6">
+                            <img src="${data.Poster}" alt="imagen de ${data.Title}">
+                                <p>Estreno ${data.Year}</p>
+                                <p>Director: ${data.Director}</p>
+                            </div>
+                            <div class="col-6">
+                                <p>Reparto: ${data.Actors}</p>
+                                <p>Resena: ${data.Plot}</p>
+                            </div>
+                    </div>
+                </div>    
+                `;
+            console.log(data);
+        })
+        .catch(function(error) {
+            console.log('UPS algo hiciste mal!', error);
+            main.innerHTML = 'Intenta nuevamente con otra pelicula o en su idioma original!';
+        });
        
 }
+
