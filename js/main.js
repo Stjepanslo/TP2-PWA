@@ -1,5 +1,5 @@
 const API_KEY = "c2d638ef";
-const URL = "http://www.omdbapi.com/?";
+const URL = "https://www.omdbapi.com/?";
 
 const button = document.getElementById('sendButton');
 const inputElement = document.getElementById('inputPeli');
